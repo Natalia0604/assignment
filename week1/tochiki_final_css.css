@@ -1,0 +1,107 @@
+<style>
+		body{margin:0px;
+			font-size: 20px;}
+		/* 標題及選單列的設定*/
+		nav{
+			display:flex;
+			margin-top: 10px;margin-bottom: 10px;
+			text-align: center;
+			align-content: center;
+		}
+		/* 大於>符號為階層選擇器，代表在<nav>標籤底下的.logo才會套用樣式 */
+		nav>.mywebsite{
+			flex:none;/* 沒有彈性，固定尺寸 */
+		}
+		nav>.space{
+			flex:auto;/* 盡量把空間塞滿 */
+		}
+		nav>.item{
+			flex:none;/* 沒有彈性，固定尺寸 */
+			width:100px;
+		}
+		.hamburger{
+		  	width:40px;height:30px;
+		  	display:none;
+		}
+
+		/* 歡迎文字的設定 */
+		.welcome{
+		font-weight:bold;font-size:40px;
+		text-align:center;
+		width:100%;
+		display: flex;
+		background-color: #ADD8E6;
+		line-height:300px;
+		justify-content: center;
+		margin:0 auto;
+		}	
+
+		/* 圖片的設定 */
+		.container{
+			display:flex;
+			flex-wrap:wrap;
+			justify-content:center; 
+			/*background-color: red;*/
+		}
+		.card{
+			width:270px;margin:10px;
+			flex:none; /* 不能彈性縮放 */
+			text-align: center;
+			background-color: #ADD8E6;
+		}
+		img .pic{
+			width:270px;
+			height:auto;
+			margin:0;
+			padding:0;
+		}
+		.info{
+			font-weight: bold;
+			text-align: center;
+			vertical-align: text-bottom;
+		}
+
+		/* 螢幕尺寸設定 */
+
+		/* RWD 回應式設計規劃:
+		1200px 以上: 4欄，固定尺寸 1200px。
+		600px ~ 1200px 之間: 2欄，彈性尺寸，width:90%。
+		600px 以下: 1欄， 彈性尺寸， width:90% */
+		
+		/*針對螢幕尺寸>1200px 以上: 4欄，固定尺寸 1200px。*/
+		@media screen and (max-width:1920px) and (min-width: 1200px){
+			.container{
+				width:1200px;
+				margin:0 auto;
+			}
+			.container>.card{
+				width:23%;
+			}
+			.card>.pic{
+				width:100%;
+			}
+		}
+		/* 針對螢幕尺寸介於 600px ~ 1200px 之間的設定: 2欄，彈性尺寸，width:90%。*/
+		@media screen and (min-width: 600px)  and (max-width:1199px){
+			.container>.card{
+				width:45%; /* 90%/2 分給2欄 */
+			}
+			.card>.pic{
+				width:100%;
+			}
+		}
+		/* 600px 以下: 1欄， 彈性尺寸， width:90% */
+		@media screen and  (max-width: 599px){
+			.container>.card{
+				width:90%;
+			}
+			.card>.pic{
+				width:100%;
+			}
+			.hamburger{
+    			display:block;
+  			}
+  			nav>.item{
+  				display:none;
+		}
+	</style>
