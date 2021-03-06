@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>week2_Q3</title>
+	<meta charset="utf-8"></meta>
+	<script type="text/javascript">
+	function maxProduct(nums){
+		var nums;
+		const ne_nums = nums.sort(compareNumbers);
+		console.log(ne_nums);
+		//取nums 後面數來的第一位跟第二位相乘
+		//負數相乘的情況還沒解決
+		const largeNumbersMultiply = ne_nums.slice(-1)[0] * ne_nums.slice(-2)[0];
+		console.log(largeNumbersMultiply)
+	};
+	//陣列nums由大到小排序
+	function compareNumbers(a,b) {
+		return a - b;
+	};
+
+	maxProduct([5, 20, 2, 6]); // 得到 120 因為 20 和 6 相乘得到最大值
+	maxProduct([10, -20, 0, 3]); // 得到 30 因為 10 和 3 
+	</script>
+</head>
+<body>
+	<p>Run in console :) </p>
+</body>
+</html>

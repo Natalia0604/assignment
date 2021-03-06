@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>week2_Q4</title>
+	<meta charset="utf-8"></meta>
+	<script type="text/javascript">
+		function twoSum(nums, target){
+		// your code here
+			this.nums = nums;
+			this.target = target;
+			const b = [];
+			const result = [];
+			for (var i = 0; i < nums; i++){
+				for(var j = 0; i < nums; j++){
+					if (i + j === target){
+						b.push(j);
+					};
+				};
+				return b;
+			};
+			for (var i = 0; i < nums; i++){
+				if (i in b){
+					var index = b.findIndex(i);
+					result.push(index);
+				};
+				return result;
+			};
+		};
+		twoSum([2, 11, 7, 15], 9);
+		console.log(twoSum([2, 11, 7, 15], 9));
+		// result=twoSum([2, 11, 7, 15], 9);
+		// console.log(result); // show [0, 2] because nums[0]+nums[2] is 9
+	</script>
+</head>
+<body>
+	<p>Run in console :)</p>
+</body>
+</html>

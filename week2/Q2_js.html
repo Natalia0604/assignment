@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>week2_Q2</title>
+	<meta charset="utf-8"></meta>
+	<script type="text/javascript">
+	function avg(data){
+		var sum= 0;
+		var salaryAverage= 0;
+		for(var i = 0; i< data["count"]; i++){
+			sum = sum+ data["employees"][i]["salary"];
+			salaryAverage = sum / data["count"];
+		}
+		console.log(data["count"], "人的平均薪資為: ", salaryAverage , "元") ;
+		// console.log(data);
+		// console.log(data["count"]);
+		// console.log(data["employees"][0]);
+		// console.log(data["employees"][0]["salary"]);
+		// console.log(data["employees"][1]["salary"]);
+		// console.log(data["employees"][2]["salary"]);
+
+	}
+	
+
+	avg({
+		"count":3,
+		"employees":[
+		{
+		"name":"John",
+		"salary":30000
+		},
+		{
+		"name":"Bob",
+		"salary":60000
+		},
+		{
+		"name":"Jenny",
+		"salary":50000
+		}
+	]
+	}); // 呼叫 avg 函式
+	</script>
+</head>
+<body>
+	<p>Run in console :)</p>
+</body>
+</html>
