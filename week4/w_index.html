@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>  <!--針對手機瀏覽加上的條件，希望手機不要對網頁進行縮放，所以將縮放尺度固定為1倍。-->
+	<title>week4_1 首頁</title>
+<style type="text/css">
+	.head{
+		background-color: #003344;color:white;
+		font-weight:bold;font-size:25px;
+		text-align:center;padding:10px;
+	}
+    .box{
+        margin:20px;text-align:center;
+    }
+</style>
+</head>
+<body style="margin:0px;background-color:#eeeeee ">
+	<div class="head">歡迎光臨，請輸入帳號密碼</div>
+    <div class="box">
+        <form action="/signin", method="POST">
+            <h3>登入系統</h3>
+            <div>帳號<input type="id" name="id"/></div>
+            <div>密碼<input type="password" name="pw"/></div>
+            <button id="btn">登入</button>
+        </form>
+    </div>
+</body>
+</html>
