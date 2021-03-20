@@ -7,20 +7,20 @@ from flask import render_template #載入 render_template 函式
 app = Flask( __name__) 
 app.secret_key= "somesecretkeythatonlyishouldknow"
 
-#建立路徑/ 對應的處理函式
+# 建立使用者資料
+# class User:
+#     def __init__(self, id, password):
+#         self.id = id
+#         self.password = password
+# users = []
+# users.append(User(id="test", password="test"))
+
 # 處理路徑 / 的對應函式
-
-class User:
-    def __init__(self, id, password):
-        self.id = id
-        self.password = password
-users = []
-users.append(User(id="test", password="test"))
-
 @app.route("/")
 def index():
     return render_template("w_index.html")
 
+# 處理路徑 /signin 的對應函式
 @app.route("/signin", methods=["GET", "POST"])
 def signin():
     # 確人使用POST方法連線，除此之外會導向回首頁
@@ -28,25 +28,30 @@ def signin():
         session.pop("user_id", None)
         userId=request.form["id"]
         userPw=request.form["pw"]
-
+        
         #檢查user輸入的資料是否正確
-        user =[x for x in users if x.id == userId ][0]
-        if user and user.password == userPw:
-            session["user_id"] = user.id #會存在cookies
-            return redirect("/member/")
-        else :
+        if userId == "test" :
+            if userPw == "test":
+                session["user_id"] = userId #會存在cookies
+                return redirect("/member/")
+            else :
+                return redirect("/error/")
+        else:
             return redirect("/error/")
     else:
         return render_template("w_index.html")
 
+# 處理路徑 /member 的對應函式
 @app.route("/member/")
 def success():
     return render_template("w_success.html")
 
+# 處理路徑 /error 的對應函式
 @app.route("/error/")
 def fail():
     return render_template("w_fail.html")
 
+# 處理路徑 /signout 的對應函式
 @app.route("/signout")
 def signout():
     session.pop('user_id', None) #登出時一併消除儲存在cookies的資料
