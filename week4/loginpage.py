@@ -3,7 +3,6 @@ from flask import request #載入 Request 物件
 from flask import redirect #載入 Redirect 函式
 from flask import session 
 from flask import render_template #載入 render_template 函式
-from flask import g
 
 app = Flask( __name__) 
 app.secret_key= "somesecretkeythatonlyishouldknow"
@@ -46,8 +45,7 @@ def signin():
 @app.route("/member/")
 def success():
     user = session.get("user_id")
-    g.user = user
-    if g.user == None :
+    if user == None :
         return redirect('/')
     else:
         return render_template("w_success.html")
