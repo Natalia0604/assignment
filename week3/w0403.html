@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+    body{
+			margin:0px; font-size: 20px;
+		}
+		nav{
+			display: flex; margin-top: 10px; margin-bottom: 10px;
+		}
+		nav>.name{
+			flex:none; width: 200px; 
+		}
+		nav>.white{
+			flex: auto;
+		}
+		nav>.item{
+			flex: none; width:100px; text-align: right;
+		}
+		nav>.menu{
+			flex: none; width: 100px; 
+		}
+		.burger{
+			width: 37.5px; height: 23px; display: none;
+			position: absolute; top:10px; right: 0px;
+		}
+
+		.block{
+			background-color: #D2B4DE; width: 100%vw; height: 300px; font-size: 40px; margin-top: 10px; 
+			display: flex; align-items: center; justify-content: center;
+		}
+		.content{
+			background-color: blue;width: 1200px; margin-right: auto; margin-left: auto; margin-top: 20px;
+			display: flex; flex-wrap: wrap; justify-content: center;
+		}
+		@media (max-width: 1200px){
+			.content{
+				width: 90%; display: flex; flex-wrap: wrap;
+			}
+		}
+
+		.box{
+			background-color: #F4ECF7; flex: none;
+			width: 280px; height: 100%; margin: 10px;  
+			margin-bottom: 25px;
+		}
+		.word{
+			font-size: 20px; font-family: "微軟正黑體";
+			text-align: center; 
+			padding: 3px; vertical-align: bottom;
+		}
+
+		@media (max-width: 1200px){
+			.box{
+				width: 45%; 
+			}
+		}
+		@media (max-width: 600px){
+			.box{
+				width: 90%;
+			}
+			.item{
+				display: none;
+			}
+			.burger{
+				display: block;
+			}
+		}
+/* .img{
+  width:100%;height:85%;
+}  */
+
+</style>
+<script type="text/javascript">
+    function getData(){
+        var req = new XMLHttpRequest();
+        req.open("get", "https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json");
+        req.send();
+        req.onload = function(){
+            var state = JSON.parse(this.responseText);
+            for (var i = 0; i < 8; i ++){
+            //放入文字
+            const content = document.querySelector('.content');
+            let box = document.createElement("div");
+            box.className = "box";
+            box.id = "pic";
+            content.append(box);
+            let word = document.createElement("div"); 
+            word.className = "word";
+            var name = state["result"]["results"][i]["stitle"];
+            let title = document.createTextNode(name);       
+            word.appendChild(title);
+            box.appendChild(word);
+        
+            //取照片 放入上方創造的 <div class="box id = "pic> 中       
+            const pic = document.createElement("img");       
+            var tmp_src = state["result"]["results"][i]["file"];
+            var src = tmp_src.split('http:')[1]; 
+            pic.src = "http:" + src;
+            document.getElementById('pic').appendChild(pic);
+            content.appendChild(pic);
+        }                     
+    }
+}
+        // var requerstURL="https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json";
+		// var request = new XMLHttpRequest();
+		// request.open('GET', requestURL);
+		// request.responseType = 'json';
+		// request.send();
+		// request.onload = function() {
+		// 	var superHeroes = request.response;
+		// 	populateHeader(superHeroes);
+		// 	showHeroes(superHeroes);
+		// }
+</script>
+</head>
+<body onload="getData()">
+    <nav>
+          <div class="name">My Website</div>
+          <div class="white"></div>
+          <div><img src="burger.png" class="burger" /></div>
+          <div class="item">Item 1</div>
+          <div class="item">Item 2</div>
+          <div class="item">Item 3</div>
+          <div class="item">Item 4</div>
+      </nav> 
+    <div class="block">Welcome to My Home</div>
+    <div class="content"></div> 
+    <img class="pic">
+  </body>
+</html>
