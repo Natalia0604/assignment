@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+    body{
+			margin:0px; font-size: 20px;padding:0px;
+		}
+		/* 標題及選單列的設定*/
+		nav{
+			display: flex; margin-top: 10px; margin-bottom: 10px;
+			text-align: center;align-content: center;
+		}
+		/* 大於>符號為階層選擇器，代表在<nav>標籤底下的.logo才會套用樣式 */
+		nav>.mywebsite{
+			flex:none; /* 沒有彈性，固定尺寸 */
+			width: 200px; 
+		}
+		nav>.space{
+			flex: auto;/* 盡量把空間塞滿 */
+		}
+		nav>.item{
+			flex: none; width:100px;
+			/* text-align: right; */
+		}
+		/* nav>.menu{
+			flex: none; width: 100px; 
+		} */
+		.burger{
+			width: 37.5px; height: 23px; display: none;
+			position: absolute; top:10px; right: 0px;
+		}
+
+		/* 歡迎文字的設定 */
+		.block{
+			background-color:#FFC0CB; width: 100%; height: 300px; font-size: 40px; margin-top: 10px; 
+			display: flex; align-items: center; justify-content: center;
+		}
+		/* Json抓來的圖片及文字的設定 */
+		.content{
+			background-color:#D8BFD8;
+			display: flex; flex-wrap: wrap; justify-content: center;
+			margin-right: auto; margin-left: auto; margin-top: 20px; 
+		}
+
+		.box{
+			background-color: #F4ECF7; 
+			flex: none;/* 不能彈性縮放 */
+			width: 270px;margin: 10px; 
+			/* margin-bottom: 25px; height: 100%;*/ 
+		}
+
+		.word{
+			font-size: 20px; font-family: "微軟正黑體";
+			text-align: center; vertical-align: text-bottom;
+			/* padding: 3px; */
+		}
+		img{
+			width: 270px;height: auto;margin:0;padding:0;
+			}
+		
+		/* 螢幕尺寸設定 
+		RWD 回應式設計規劃:1200px 以上: 4欄，固定尺寸 1200px。600px ~ 1200px 之間: 2欄，彈性尺寸，width:90%。600px 以下: 1欄， 彈性尺寸， width:90% */
+		
+		/*針對螢幕尺寸>1200px 以上: 4欄，固定尺寸 1200px。*/
+		@media screen and (max-width:1920px) and (min-width: 1200px){
+			.content{
+				width: 1200px; margin:0 auto;
+				/* display: flex; flex-wrap: wrap; */
+			}
+			.container>.box{
+				width: 23%; 
+			}
+			
+		}
+		/* 針對螢幕尺寸介於 600px ~ 1200px 之間的設定: 2欄，彈性尺寸，width:90%。*/
+		@media screen and (min-width: 600px)  and (max-width:1199px){
+			.container>.box{
+				width: 45%; /* 90%/2 分給2欄 */
+			}
+			
+		}
+		/* 600px 以下: 1欄， 彈性尺寸， width:90% */
+		@media screen and  (max-width: 599px){
+			.container>.box{
+				width: 90%;
+			}
+			
+			.item{
+				display: none;
+			}
+			.burger{
+				display: block;
+			}
+		}
+</style>
+<script type="text/javascript">
+    function getData(){
+        var req = new XMLHttpRequest();
+        req.open("GET", "https://padax.github.io/taipei-day-trip-resources/taipei-attractions.json");
+		req.send();
+		req.onload = function(){
+		var myData = JSON.parse(req.responseText);
+		for (var i = 0; i < 8; i ++){
+			// 回傳document到.content
+			const content = document.querySelector('.content');
+			let box = document.createElement("div");
+			box.className = "box";
+			box.id = "pic";
+			content.append(box);
+			let word = document.createElement("div"); 
+			word.className = "word";
+			var name = myData["result"]["results"][i]["stitle"];
+			let title = document.createTextNode(name);       
+			word.appendChild(title);
+			box.appendChild(word);
+		
+			//取照片 放入上方創造的 <div className="box" id = "pic"> 中       
+			const pic = document.createElement("img");       
+			var all_src = myData["result"]["results"][i]["file"];
+			var src = all_src.split('http:')[1]; 
+			pic.src = "http:" + src;
+			document.getElementById('pic').appendChild(pic);
+			content.appendChild(pic);
+		} 
+		                           
+    }
+}
+</script>
+</head>
+<body onload="getData()">
+    <nav>
+          <div class="mywebsite">My Website</div>
+          <div class="space"></div>
+          <div><img src="burger.png" class="burger" /></div>
+          <div class="item">Item 1</div>
+          <div class="item">Item 2</div>
+          <div class="item">Item 3</div>
+          <div class="item">Item 4</div>
+      </nav> 
+    <div class="block">Welcome to My Home</div>
+    <div class="content"></div> 
+    <div class="box" id="pic"></div>
+	<!-- <img class="pic"> -->
+  </body>
+</html>
