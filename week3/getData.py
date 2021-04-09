@@ -11,4 +11,4 @@ with open("data.txt", "w", encoding="utf-8") as file: #將資料寫入data.txt
         picSplit=spot["file"].split("http://") #將照片的網址分開
         file.write(spot["stitle"]+ "," + spot["longitude"] + "," + spot["latitude"] + "," + "http://"+picSplit[1]+"\n")
 
-# 打開data.txt看到有一個地名很奇怪，叫做!......，是程式出錯嗎?
+
