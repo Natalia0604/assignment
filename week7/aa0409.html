@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+    // var ourRequest = new XMLHttpRequest();
+    // ourRequest.open('GET','http://127.0.0.1:8888/data0409.JSON');
+    // ourRequest.onload= function(){
+    // var ourData = JSON.parse(ourRequest.responseText);
+    // console.log(ourData);
+    // }
+    // ourRequest.send();
+    fetch('http://127.0.0.1:8888/data0409.JSON').then(function (response) {
+        return response.json();
+    }).then(function(obj){
+        console.log(obj);
+    }).catch(function(error){
+        console.error('Something went wrong ');
+        console.error(error);
+    });
+    
+</script>
+</head>
+<body>
+<div>123</div>
+</body>
+</html>
