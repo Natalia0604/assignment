@@ -28,24 +28,32 @@ def restAPI():
     if (searchUsername,) in conditionalData:
         #取id、name、username的資料
         mycursor = connection.cursor()
-        mycursor.execute("SELECT username FROM user WHERE username = (%s)",(searchUsername,))
-        username = mycursor.fetchone()  #取username第一筆資料
-        mycursor.execute("SELECT id FROM user WHERE username = (%s)",(searchUsername,))
-        id = mycursor.fetchone()  #取id第一筆資料
-        mycursor.execute("SELECT name FROM user WHERE username = (%s)",(searchUsername,))
-        name = mycursor.fetchone()  #取name第一筆資料
+        mycursor.execute("SELECT username,id,name FROM user WHERE username = (%s)",(searchUsername,))
+        userInfo =mycursor.fetchone() #取第一筆資料
         data={
         "data":{
-            "id":id[0],
-            "name":name[0],
-            "username":username[0]
+            "id":userInfo[1],
+            "name":userInfo[2],
+            "username":userInfo[0]
             }
         }
         return jsonify(data)
     else:
         wrongdata={"data":None} 
         return jsonify(wrongdata)
-
+# mycursor.execute("SELECT username FROM user WHERE username = (%s)",(searchUsername,))
+        # username = mycursor.fetchone()  #取username第一筆資料
+        # mycursor.execute("SELECT id FROM user WHERE username = (%s)",(searchUsername,))
+        # id = mycursor.fetchone()  #取id第一筆資料
+        # mycursor.execute("SELECT name FROM user WHERE username = (%s)",(searchUsername,))
+        # name = mycursor.fetchone()  #取name第一筆資料
+        # data={
+        # "data":{
+        #     "id":id[0],
+        #     "name":name[0],
+        #     "username":username[0]
+        #     }
+        # }
 # 處理路徑 / 的對應函式
 @app.route("/")
 def index():
