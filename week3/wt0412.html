@@ -34,7 +34,7 @@
     }
 
     /* 歡迎文字的設定 */
-    .block{
+    .welcome{
     font-weight:bold;font-size:40px;
     text-align:center;
     width:100%;
@@ -42,8 +42,7 @@
     background-color: #ADD8E6;
     line-height:300px;
     justify-content: center;
-    margin-right:0; margin-left: 0;
-    padding: 0; 
+    margin:0 auto; 
     }	
 
     /* 圖片的設定 */
@@ -59,10 +58,11 @@
         flex:none; /* 不能彈性縮放 */
         text-align: center;
         background-color: #ADD8E6;
+        
     }
-    img{
-        width:276px;
-        height:auto;
+    img.pic{
+        width:270px;
+        height:220px;
         margin:0;
         padding:0;
     }
@@ -70,6 +70,7 @@
         font-weight: bold;
         text-align: center;
         vertical-align: text-bottom;
+        align-items:flex-start;
     }
 
     /* 螢幕尺寸設定 */
@@ -88,7 +89,7 @@
         .content>.box{
             width:23%;
         }
-        .box>.img{
+        .box>.pic{
             width:100%;
         }
     }
@@ -97,7 +98,7 @@
         .content>.box{
             width:45%; /* 90%/2 分給2欄 */
         }
-        .box>.img{
+        .box>.pic{
             width:100%;
         }
     }
@@ -106,8 +107,8 @@
         .content>.box{
             width:90%;
         }
-        .box>.img{
-            width:100%;
+        .box>.pic{
+            width:100%
         }
         .burger{
             display:block;
@@ -137,7 +138,8 @@
 			let title = document.createTextNode(name);       
 			word.appendChild(title);
 			//取照片 放入上方創造的 <div class="box" id = "pic"> 中       
-			const pic = document.createElement("img");       
+			const pic = document.createElement("img"); 
+            pic.className="pic";      
 			var all_src = myData["result"]["results"][i]["file"];
 			var src = all_src.split('http:')[1]; 
 			pic.src = "http:" + src;
@@ -160,7 +162,7 @@
         <div class="item">Item 3</div>
         <div class="item">Item 4</div>
     </nav> 
-    <div class="block">Welcome to My Home</div>
+    <div class="welcome">Welcome to My Home</div>
 	<div class="content"></div>
   </body>
 </html>
