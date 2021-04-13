@@ -125,7 +125,8 @@
 		req.send();
 		req.onload = function(){
 		var myData = JSON.parse(req.responseText);
-		for (var i = 0; i < 8; i ++){
+		var mulitply = 1;
+		for (var i = 0; i <8*mulitply; i ++){
 			// 回傳document到.content
 			const content = document.querySelector('.content');
 			let box = document.createElement("div");
@@ -147,6 +148,7 @@
 			document.getElementById("pic").appendChild(pic);
 			box.appendChild(pic);
 			box.appendChild(word);
+			mulitply++;
 		};		                         
     }
 }
@@ -164,5 +166,6 @@
     </nav> 
     <div class="welcome">Welcome to My Home</div>
 	<div class="content"></div>
+	<button id="click" onclick="getData()">Load more</button>
   </body>
 </html>
